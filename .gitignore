@@ -1,0 +1,6 @@
+.vs/
+TaskApp/TaskApp.csproj.user
+TaskApp/bin/Debug/net8.0/appsettings.Development.json
+TaskApp/bin/Debug/net8.0/appsettings.json
+TaskApp/bin/
+TaskApp/obj/
