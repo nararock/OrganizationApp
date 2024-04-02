@@ -10,6 +10,6 @@
         public DateOnly Date {  get; set; }
         public required string PassportSeries { get; set; }
         public required string PassportNumber { get; set; }
-        public required Organization Organization { get; set; }
+        public Organization Organization { get; set; }
     }
 }
