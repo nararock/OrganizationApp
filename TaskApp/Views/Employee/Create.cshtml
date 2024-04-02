@@ -1,0 +1,34 @@
+﻿@using TaskApp.Models;
+@model CreatePageModel;
+
+@if (Model.Organizations.Count == 0)
+{
+    <h1>В списке нет ни одной организации. Добавить сотрудника некуда.</h1>
+    <a href="/Organization/Create">Добавить организацию</a>
+}
+else
+{
+    <h1>Добавление нового сотрудника</h1>
+    <h3>Заполните поля</h3>
+    @if (!Model.Response.State)
+    {
+        <p>@Model.Response.TextError</p>
+    }
+    <form method='post'>
+        Организация: <select name="OrganizationId">
+            <option value="0" ></option>
+            @foreach (var element in Model.Organizations)
+            {
+                <option value="@element.Id">@element.Name</option>
+            }
+        </select>
+        Имя: <input type="text" name="Name" />
+        Фамилия: <input type="text" name="Surname" />
+        Отчество: <input type="text" name="Patronymic" />
+        Дата рождения: <input type="text" placeholder="дд.мм.гггг" name="Date" />
+        <p>Паспортные данные<p/>
+        Серия: <input type="text" name="PassportSeries" />
+        Номер: <input type="text" name="PassportNumber" />
+        <button type="submit">Сохранить</button>
+    </form>
+}
