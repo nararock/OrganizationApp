@@ -61,5 +61,20 @@ namespace TaskApp.Classes
             }
             return response;
         }
+
+        public List<EmployeeModel> getEmployeeInfo(int id, TaskContext taskContext)
+        {
+            List<EmployeeModel> employees = taskContext.Employees.Where(e => e.OrganizationId == id).Select(employee => new EmployeeModel 
+            {
+                Name = employee.Name,
+                Surname = employee.Surname,
+                Patronymic = employee.Patronymic,
+                PassportSeries = employee.PassportSeries,
+                PassportNumber = employee.PassportNumber,
+                Date = employee.Date,
+            }).ToList();
+            
+            return employees;
+        }
     }
 }

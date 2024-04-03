@@ -13,9 +13,12 @@ namespace TaskApp.Controllers
             TaskContext = taskContext;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            return View();
+            int idEmp = int.Parse(id);
+            EmployeeHelper employeeHelper = new EmployeeHelper();   
+            List<EmployeeModel> employees = employeeHelper.getEmployeeInfo(idEmp, TaskContext);
+            return View(employees);
         }
 
         public IActionResult Create()
@@ -39,7 +42,7 @@ namespace TaskApp.Controllers
             EmployeeHelper employeeHelper = new EmployeeHelper();
             Response response =  employeeHelper.createNewEmployee(employee, TaskContext);
             if (response.State)
-                return Redirect("/Employee/Index");
+                return Redirect("/Home/Index");
             List<OrganizationModel> organizations = employeeHelper.getOrganizations(TaskContext);
             CreatePageModel pageModel = new CreatePageModel
             {
