@@ -1,10 +1,21 @@
-﻿<h1>Добавление новой организации</h1>
-<h3>Заполните поля</h3>
+﻿@using TaskApp.Models;
+@model Response;
 
-<form method='post'>
-    Название: <input type="text" name="Name" />
-    ИНН: <input type="text" value="" name="INN"/>
-    Юридический адрес: <input type="text" name="LegalAddress" />
-    Фактический адрес: <input type="text" name="ActualAddress"/>
-    <button type="submit">Сохранить</button>
-</form>
+<div class="createOrganization">
+    <h1>Добавление новой организации</h1>
+    <h3>Заполните поля</h3>
+    @if (!Model.State)
+    {
+        <p>@Model.TextError</p>
+    }
+    <form method='post'>
+        Название: <input type="text" name="Name" />
+        ИНН: <input type="text" value="" name="INN" />
+        Юридический адрес: <input type="text" name="LegalAddress" />
+        Фактический адрес: <input type="text" name="ActualAddress" />
+        <button type="submit">Сохранить</button>
+    </form>
+    <div class="reference">
+        <a href="/Home/Index">Главная страница</a>
+    </div>
+</div>

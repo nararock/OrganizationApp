@@ -15,21 +15,29 @@ namespace TaskApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            EmployeeHelper employeeHelper = new EmployeeHelper();
+            List<OrganizationModel> organizations = employeeHelper.getOrganizations(TaskContext);
+            return View(organizations);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            Response response = new Response
+            {
+                State = true,
+            };
+            return View(response);
         }
 
         [HttpPost]
         public IActionResult Create(OrganizationCreateModel organization)
         {
             OrganizationHelper organizationHelper = new OrganizationHelper();
-            organizationHelper.CreateNewOrganization(organization, TaskContext);
-            return Redirect("/Organization/Index");
+            Response response = organizationHelper.CreateNewOrganization(organization, TaskContext);
+            if (response.State)
+                return Redirect("/Organization/Index");
+            return View(response);
         }
     }
 }

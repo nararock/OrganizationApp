@@ -5,17 +5,38 @@ namespace TaskApp.Classes
 {
     public class OrganizationHelper
     {
-        public void CreateNewOrganization(OrganizationCreateModel organization, TaskContext taskDb)
+        public Response CreateNewOrganization(OrganizationCreateModel organization, TaskContext taskDb)
         {
-            Organization newOrganization = new()
+            Response response = checkOrganizationData(organization);
+            if (response.State)
             {
-                Name = organization.Name,
-                INN = organization.INN,
-                LegalAddress = organization.LegalAddress,
-                ActualAddress = organization.ActualAddress,
+                 Organization newOrganization = new()
+                            {
+                                Name = organization.Name,
+                                INN = organization.INN,
+                                LegalAddress = organization.LegalAddress,
+                                ActualAddress = organization.ActualAddress,
+                            };
+                taskDb.Organizations.Add(newOrganization);
+                taskDb.SaveChanges();
+                return response;
+            }
+           return response;
+        }
+
+        public Response checkOrganizationData(OrganizationCreateModel organization)
+        {
+            Response response = new Response
+            {
+                State = true,
             };
-            taskDb.Organizations.Add(newOrganization);
-            taskDb.SaveChanges();
+            if (organization.Name == null || organization.INN  == null || organization.LegalAddress == null || organization.ActualAddress == null)
+            {
+                response.State = false;
+                response.TextError = "Не все поля заполнены.";
+                return response;
+            }
+            return response;
         }
     }
 }
