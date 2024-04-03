@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskApp", "TaskApp\TaskApp.csproj", "{F6C3DA9C-CE7A-43EC-92CB-2A59ED7BC701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskApp", "TaskApp\TaskApp.csproj", "{F6C3DA9C-CE7A-43EC-92CB-2A59ED7BC701}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
