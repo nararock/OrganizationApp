@@ -71,5 +71,24 @@ namespace TaskApp.Classes
                 }
             }
         }
+
+        public StringBuilder getDataOrganizatuionFromDB(TaskContext taskContext)
+        {
+            List<CSVOrganizationModel> organizations = taskContext.Organizations.Select(o => new CSVOrganizationModel { 
+                Name = o.Name,
+                INN = o.INN,
+                ActualAddress = o.ActualAddress,
+                LegalAddress = o.LegalAddress,
+            }).ToList();
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (var element in organizations)
+            {
+                stringBuilder.Append(element.Name + ";");
+                stringBuilder.Append(element.INN + ";");
+                stringBuilder.Append(element.ActualAddress + ";");
+                stringBuilder.AppendLine(element.LegalAddress);
+            }
+            return stringBuilder;
+        }
     }
 }

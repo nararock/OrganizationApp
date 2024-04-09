@@ -29,7 +29,14 @@ namespace TaskApp.Controllers
         {
             CSVHelper helper = new CSVHelper();
             helper.ReadFile(file, id, TaskContext);
-            return View();
+            return Redirect("/Home/Index");
+        }
+
+        public IActionResult DownloadOrganizations()
+        {
+            CSVHelper helper = new CSVHelper();
+            StringBuilder organizations = helper.getDataOrganizatuionFromDB(TaskContext);
+            return File(System.Text.Encoding.UTF8.GetBytes(organizations.ToString()), "text/csv",  "organizations.csv");
         }
     }
 }
