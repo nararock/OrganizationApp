@@ -38,5 +38,12 @@ namespace TaskApp.Controllers
             StringBuilder organizations = helper.getDataOrganizatuionFromDB(TaskContext);
             return File(System.Text.Encoding.UTF8.GetBytes(organizations.ToString()), "text/csv",  "organizations.csv");
         }
+
+        public IActionResult UploadOrganizations([FromForm(Name= "dataUpload")] IFormFile file)
+        {
+            CSVHelper helper = new CSVHelper();
+            helper.UploadOrganizations(file, TaskContext);
+            return Redirect("/Home/Index");
+        }
     }
 }

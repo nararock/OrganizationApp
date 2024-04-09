@@ -90,5 +90,29 @@ namespace TaskApp.Classes
             }
             return stringBuilder;
         }
+
+        public void UploadOrganizations(IFormFile file, TaskContext taskContext)
+        {
+            string content = new StreamReader(file.OpenReadStream(), Encoding.UTF8).ReadToEnd();
+            string[] contentArr = content.Split('\n');
+            
+            foreach(var element in contentArr)
+            {
+                string[] parts = element.Split(';');
+                if (parts.Length == 4)
+                {
+                    Organization organization = new Organization
+                        {
+                            Name = parts[0],
+                            INN = parts[1],
+                            ActualAddress = parts[2],
+                            LegalAddress = parts[3],
+                        };
+                    taskContext.Organizations.Add(organization);
+                    taskContext.SaveChanges();
+                }
+                
+            }
+        }
     }
 }

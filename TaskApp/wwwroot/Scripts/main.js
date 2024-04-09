@@ -11,3 +11,15 @@ function generateClickButton() {
     let event = new MouseEvent("click");
     input.dispatchEvent(event);
 }
+
+function generateClickUploadOrganization() {
+    let input = document.querySelector("#uploadOrganization");
+    let event = new MouseEvent("click");
+    input.dispatchEvent(event);
+}
+
+function generateClickUploadButton() {
+    let input = document.querySelector("#formUploadButton");
+    let event = new MouseEvent("click");
+    input.dispatchEvent(event);
+}

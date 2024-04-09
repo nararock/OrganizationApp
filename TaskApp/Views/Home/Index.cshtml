@@ -25,6 +25,7 @@
         <a href="/Home/Create">Добавить организацию</a>
         <a href="/Employee/Create">Добавить сотрудника</a>
         <a href="/CSV/DownloadOrganizations">Скачать список организаций</a>
+        <a onclick="generateClickUploadOrganization()">Загрузить список организаций</a>
     </div>
 </div>
 
@@ -34,5 +35,12 @@
         <input type="file" name="data" id="organizationInput" onchange="generateClickButton()">
         <input type="text" id="organizationId" name="organizationId">
         <input type="submit" value="Отправить" id="formButton">
+    </p>
+</form>
+
+<form method="post" action="/CSV/UploadOrganizations" enctype="multipart/form-data" style="display:none">
+    <p>
+        <input type="file" name="dataUpload" id="uploadOrganization" onchange="generateClickUploadButton()">
+        <input type="submit" value="Отправить" id="formUploadButton">
     </p>
 </form>
