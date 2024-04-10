@@ -36,7 +36,7 @@ namespace TaskApp.Controllers
             OrganizationHelper organizationHelper = new OrganizationHelper();
             Response response = organizationHelper.CreateNewOrganization(organization, TaskContext);
             if (response.State)
-                return Redirect("/Organization/Index");
+                return Redirect("/Home/Index");
             return View(response);
         }
     }
